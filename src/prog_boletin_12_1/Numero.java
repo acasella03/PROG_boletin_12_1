@@ -7,23 +7,31 @@ public class Numero {
     int numeroSecreto;
     int cantidadIntentos;
     int intento;
+    String insertarNumeroSecreto = "Jugador 1: Teclea el número secreto";
+    String insertarCantidadIntentos = "Jugador 1: Asigna el número de intentos que va a tener el Jugador 2";
+    String insertayAdivinaNumSecreto = "Juagador 2: Teclea y adivina el número del Jugador 1";
+    String acertarNumeroSecreto = "¡Adivinaste!";
+    String mensajeNumeroSecretoEsMenor = "El número es menor\nInténtalo otra vez";
+    String mensajeNumeroSecretoEsMayor = "El número es mayor\nInténtalo otra vez";
+    String gameOver = "Fin del Juego\nSe te acabaron los intentos";
 
     public void pedirNumero() {
         do {
-            numeroSecreto = pedirEntero("Jugador 1: Teclea el número secreto");
-            cantidadIntentos = pedirEntero("Jugador 1: Asigna el número de intentos que va a tener el Jugador 2");
+            numeroSecreto = pedirEntero(insertarNumeroSecreto);
+            cantidadIntentos = pedirEntero(insertarCantidadIntentos);
         } while (numeroSecreto <= 0 || numeroSecreto > 50);
         for (int i = 1; i <= cantidadIntentos; i++) {
-            intento = pedirEntero("Juagador 2: Teclea y adivina el número del Jugador 1");
+            intento = pedirEntero(insertayAdivinaNumSecreto);
             if (intento == numeroSecreto) {
-                JOptionPane.showMessageDialog(null, "¡Adivinaste!");
+                JOptionPane.showMessageDialog(null, acertarNumeroSecreto);
                 break;
-            } else if (i<cantidadIntentos && intento>numeroSecreto){
-                JOptionPane.showMessageDialog(null, "El número es menor\nInténtalo otra vez");
-            }else if (intento<numeroSecreto){
-                JOptionPane.showMessageDialog(null, "El número es mayor\nInténtalo otra vez");
-            }else
-                JOptionPane.showMessageDialog(null, "Fin del Juego\nSe te acabaron los intentos");
+            } else if (i < cantidadIntentos && intento > numeroSecreto) {
+                JOptionPane.showMessageDialog(null, mensajeNumeroSecretoEsMenor);
+            } else if (intento < numeroSecreto) {
+                JOptionPane.showMessageDialog(null, mensajeNumeroSecretoEsMayor);
+            } else {
+                JOptionPane.showMessageDialog(null, gameOver);
+            }
 
         }
     }
